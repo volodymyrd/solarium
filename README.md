@@ -20,3 +20,7 @@ cargo run --package solarium-genesis -- \
 --hashes-per-tick auto \
 --cluster-type development
 ```
+
+```
+cargo run --package agave-ledger-tool -- -l config/leader accounts
+```
