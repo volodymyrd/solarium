@@ -1,0 +1,20 @@
+[workspace]
+members = ["keygen"]
+
+resolver = "2"
+
+[workspace.package]
+version = "0.0.1"
+authors = ["Volodymyr Dotsenko <volodymyrdotsenko@gmail.com>"]
+repository = "https://github.com/volodymyrd/solarium"
+homepage = "https://github.com/volodymyrd/solarium"
+license = "Apache-2.0"
+edition = "2024"
+
+[workspace.dependencies]
+solana-cli-config = "3.0.1"
+clap = "4.5.47"
+rpassword = "7.4.0"
+solana-keypair = "3.0.1"
+solana-signer = "3.0.0"
+tiny-bip39 = "2.0.0"
