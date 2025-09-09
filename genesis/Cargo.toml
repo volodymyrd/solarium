@@ -1,0 +1,35 @@
+[package]
+name = "solarium-genesis"
+version.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+license.workspace = true
+edition.workspace = true
+
+[dependencies]
+clap = { workspace = true, features = ["cargo"] }
+solana-account = { workspace = true }
+solana-accounts-db = { workspace = true }
+solana-clap-utils = { workspace = true }
+solana-cli-config = { workspace = true }
+solana-clock = { workspace = true }
+solana-cluster-type = { workspace = true }
+solana-entry = { workspace = true }
+solana-epoch-schedule = { workspace = true }
+solana-fee-calculator = { workspace = true }
+solana-genesis-config = { workspace = true }
+solana-inflation = { workspace = true }
+solana-ledger = { workspace = true }
+solana-logger = { workspace = true }
+solana-native-token = { workspace = true }
+solana-poh-config = { workspace = true }
+solana-pubkey = { workspace = true }
+solana-rent = { workspace = true }
+solana-runtime = { workspace = true }
+solana-sdk-ids = { workspace = true }
+solana-stake-interface = { workspace = true }
+solana-stake-program = { workspace = true }
+solana-vote-interface = { workspace = true }
+solana-vote-program = { workspace = true }
+solarium-clap-utils = { workspace = true }

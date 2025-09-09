@@ -6,9 +6,9 @@ use crate::mnemonic::{
     try_get_word_count, word_count_arg,
 };
 use bip39::{Mnemonic, MnemonicType, Seed};
+use clap::{Arg, ArgAction, ArgMatches, Command, crate_description, crate_name, crate_version};
 use solana_cli_config::Config;
-use clap::{crate_description, crate_name, crate_version, Arg, ArgAction, ArgMatches, Command};
-use solana_keypair::{keypair_from_seed, write_keypair, write_keypair_file, Keypair};
+use solana_keypair::{Keypair, keypair_from_seed, write_keypair, write_keypair_file};
 use solana_signer::Signer;
 use std::error;
 use std::path::Path;
@@ -101,7 +101,12 @@ fn main() -> Result<(), Box<dyn error::Error>> {
                     let divider = String::from_utf8(vec![b'='; phrase.len()]).unwrap();
                     println!(
                         "{}\npubkey: {}\n{}\nSave this seed phrase{} to recover your new keypair:\n{}\n{}",
-                        &divider, keypair.pubkey(), &divider, passphrase_message, phrase, &divider
+                        &divider,
+                        keypair.pubkey(),
+                        &divider,
+                        passphrase_message,
+                        phrase,
+                        &divider
                     );
                 }
             }

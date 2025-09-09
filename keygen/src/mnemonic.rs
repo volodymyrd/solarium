@@ -1,5 +1,5 @@
-use crate::keypair::prompt_passphrase;
 use crate::ArgConstant;
+use crate::keypair::prompt_passphrase;
 use bip39::Language;
 use clap::builder::PossibleValuesParser;
 use clap::{Arg, ArgAction, ArgMatches};
