@@ -8,7 +8,7 @@ license.workspace = true
 edition.workspace = true
 
 [dependencies]
-clap = { workspace = true, features = ["cargo"] }
+clap = { workspace = true, features = ["cargo", "string"] }
 solana-account = { workspace = true }
 solana-accounts-db = { workspace = true }
 solana-clap-utils = { workspace = true }

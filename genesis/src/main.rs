@@ -29,11 +29,7 @@ use std::time::Duration;
 use std::{io, process};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let default_faucet_pubkey = Box::leak(
-        solana_cli_config::Config::default()
-            .keypair_path
-            .into_boxed_str(),
-    ) as &'static str;
+    let default_faucet_pubkey = solana_cli_config::Config::default().keypair_path;
     let (
         default_target_lamports_per_signature,
         default_target_signatures_per_slot,
@@ -41,19 +37,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     ) = {
         let fee_rate_governor = FeeRateGovernor::default();
         (
-            Box::leak(
-                fee_rate_governor
-                    .target_lamports_per_signature
-                    .to_string()
-                    .into_boxed_str(),
-            ) as &'static str,
-            Box::leak(
-                fee_rate_governor
-                    .target_signatures_per_slot
-                    .to_string()
-                    .into_boxed_str(),
-            ) as &'static str,
-            Box::leak(fee_rate_governor.burn_percent.to_string().into_boxed_str()) as &'static str,
+            fee_rate_governor.target_lamports_per_signature.to_string(),
+            fee_rate_governor.target_signatures_per_slot.to_string(),
+            fee_rate_governor.burn_percent.to_string(),
         )
     };
 
@@ -64,36 +50,25 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         default_rent_burn_percentage,
     ) = {
         (
-            Box::leak(rent.lamports_per_byte_year.to_string().into_boxed_str()) as &'static str,
-            Box::leak(rent.exemption_threshold.to_string().into_boxed_str()) as &'static str,
-            Box::leak(rent.burn_percent.to_string().into_boxed_str()) as &'static str,
+            rent.lamports_per_byte_year.to_string(),
+            rent.exemption_threshold.to_string(),
+            rent.burn_percent.to_string(),
         )
     };
 
     // vote account
-    let default_bootstrap_validator_lamports = Box::leak(
-        (500 * LAMPORTS_PER_SOL)
-            .max(VoteStateV3::get_rent_exempt_reserve(&rent))
-            .to_string()
-            .into_boxed_str(),
-    ) as &'static str;
+    let default_bootstrap_validator_lamports = (500 * LAMPORTS_PER_SOL)
+        .max(VoteStateV3::get_rent_exempt_reserve(&rent))
+        .to_string();
     // stake account
-    let default_bootstrap_validator_stake_lamports = Box::leak(
-        (LAMPORTS_PER_SOL / 2)
-            .max(rent.minimum_balance(StakeStateV2::size_of()))
-            .to_string()
-            .into_boxed_str(),
-    ) as &'static str;
+    let default_bootstrap_validator_stake_lamports = (LAMPORTS_PER_SOL / 2)
+        .max(rent.minimum_balance(StakeStateV2::size_of()))
+        .to_string();
 
     let default_target_tick_duration = PohConfig::default().target_tick_duration;
-    let default_ticks_per_slot =
-        Box::leak(clock::DEFAULT_TICKS_PER_SLOT.to_string().into_boxed_str()) as &'static str;
+    let default_ticks_per_slot = clock::DEFAULT_TICKS_PER_SLOT.to_string();
     let default_cluster_type = "mainnet-beta";
-    let default_genesis_archive_unpacked_size = Box::leak(
-        MAX_GENESIS_ARCHIVE_UNPACKED_SIZE
-            .to_string()
-            .into_boxed_str(),
-    ) as &'static str;
+    let default_genesis_archive_unpacked_size = MAX_GENESIS_ARCHIVE_UNPACKED_SIZE.to_string();
 
     let matches = Command::new(crate_name!())
         .about(crate_description!())
